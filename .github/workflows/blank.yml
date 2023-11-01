@@ -35,3 +35,4 @@ jobs:
           echo Hi shubham
           ls -la
           git --version
+          python3 --version
