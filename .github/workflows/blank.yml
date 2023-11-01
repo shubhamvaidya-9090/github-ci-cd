@@ -35,4 +35,4 @@ jobs:
   
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook ./testPlaybook.yaml
+          ansible-playbook playbook.yaml
