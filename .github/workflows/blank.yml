@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ansible
-          ansible-galaxy collection build --force --output-path collection-tarballs
+          # ansible-galaxy collection build --force --output-path collection-tarballs
   
       - name: Run Ansible Playbook
         run: |
