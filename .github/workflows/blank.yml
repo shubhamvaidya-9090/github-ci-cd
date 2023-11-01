@@ -22,18 +22,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+  
+      - name: Install dependencies
         run: |
-          echo Hi shubham
-          ls -la
-          git --version
-          python3 --version
-          ansible --version
+          pip install ansible
+          ansible-galaxy collection build --force --output-path collection-tarballs
+  
+      - name: Run Ansible Playbook
+        run: |
+          ansible-playbook testPlaybook.yaml
