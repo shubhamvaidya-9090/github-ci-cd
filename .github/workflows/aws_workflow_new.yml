@@ -5,7 +5,7 @@ name: AWS Workflow new
 # Controls when the workflow will run
 on:
   push:
-    branches: [feature/aws_lambda1]
+    branches: [feature/aws_lambda]
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,8 +42,8 @@ jobs:
       - name: Install libraries
         run: |
             cd function
-            # python -m pip install --upgrade pip
-            # if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+            python -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
       - name: Create zip bundle
         run: |
             ls -lart
