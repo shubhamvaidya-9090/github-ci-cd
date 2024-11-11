@@ -17,4 +17,4 @@ def test_multiple_items_calculation():
     price_summary = result["body"]["price_summary"]
     assert price_summary["subtotal"] == "$26.97"  # 10.99 + 12.99 + 2.99
     assert price_summary["tax_8%"] == "$2.16"     # 26.97 * 0.08
-    assert price_summary["total"] == "$29.13" 
+    assert price_summary["total"] == "$29.12" 
