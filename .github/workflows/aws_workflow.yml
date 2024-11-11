@@ -9,24 +9,38 @@ on:
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "init"
-  init:
-    # The type of runner that the job will run on
+  build:
     runs-on: self-hosted
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: checkout on code
-        uses: actions/checkout@v3
-
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.10"
-
-      - name: check files present in the directory
-        run: ls -la
-
-      - name: printing hostname
-        run: echo $HOSTNAME
-      - run: echo 'hello cloud gurus'
+          python-version: 3.8
+      - name: Install libraries
+        run: |
+            cd function
+            python -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+      - name: Create zip bundle
+        run: |
+            ls -lart
+            cd function
+            zip -r ../${{ github.sha }}.zip .
+      - name: Archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zipped-bundle
+          path: ${{ github.sha }}.zip
+  
+  upload:
+    runs-on: self-hosted
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: zipped-bundle
+      - name: check
+        run: ls -lrt
+            
