@@ -85,7 +85,7 @@ jobs:
       - name: upload code to Lambda function
         run: |
           aws lambda update-function-code \
-          --function-name lambda-function \
+          --function-name aws-lambda-function \
           --s3-bucket github-action-bucket-9090 \
           --s3-key ${{ github.sha }}.zip \
           --publish

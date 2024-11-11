@@ -4,3 +4,7 @@
 1. Make sure AWS access key and secret access key are updated correctly.
 2. create aws lambda role(aws-lambda-role). It dont need any permission/policy to attached
 3. install awc cli in runner if you have not installed
+4. Test case in aws lambda
+    {
+  "items": ["burger", "pizza", "soft_drink"]
+    }
