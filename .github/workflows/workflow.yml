@@ -5,7 +5,7 @@ name: GitHub workflow on custom runner(feature/workflow)
 # Controls when the workflow will run
 on:
   push:
-    branches: [feature/workflow]
+    branches: [feature/aws_lambda]
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
