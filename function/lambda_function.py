@@ -8,7 +8,7 @@ def format_currency(amount):
 def calculate_price(order_items):
     # Menu with prices
     menu_prices = {
-        'burger': 8.99,
+        'burger': 10.99,
         'pizza': 12.99,
         'soft_drink': 2.99,
         'fries': 3.99,
