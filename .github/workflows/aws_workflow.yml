@@ -67,4 +67,4 @@ jobs:
           --function-name lambda-function \
           --s3-bucket github-action-bucket-9090 \
           --s3-key ${{ github.sha }}.zip \
-          -- publish
+          --publish
