@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-This is my sample file
-=======
-khvbd
->>>>>>> 8aaa7bf00f18f2aa641b41855f639fd2ed0472ed
