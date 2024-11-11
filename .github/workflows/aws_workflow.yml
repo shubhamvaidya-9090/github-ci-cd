@@ -50,3 +50,21 @@ jobs:
           aws-region: us-east-1
       - name: upload to S3 bucket
         run: aws s3 cp ${{ github.sha }}.zip s3://github-action-bucket-9090/${{ github.sha }}.zip
+
+  deploy_to_Lambda:
+    runs-on: self-hosted
+    needs: upload
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+          aws-region: us-east-1
+      - name: upload code to Lambda function
+        run: |
+          aws lambda updagte-function-code \
+          --function-name lambda-function \
+          --s3-buckate github-action-bucket-9090 \
+          --s3-key ${{ github.sha }}.zip \
+          -- publish
