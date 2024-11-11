@@ -63,7 +63,7 @@ jobs:
           aws-region: us-east-1
       - name: upload code to Lambda function
         run: |
-          aws lambda updagte-function-code \
+          aws lambda update-function-code \
           --function-name lambda-function \
           --s3-buckate github-action-bucket-9090 \
           --s3-key ${{ github.sha }}.zip \
