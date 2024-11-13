@@ -1,5 +1,10 @@
 name: Deploy Static Website
-on: [push]
+on: 
+  push:
+    branches:
+      - feature/static_web_hosting
+    paths:
+      - userguide.md
 
 jobs:
 
