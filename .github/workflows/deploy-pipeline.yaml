@@ -1,4 +1,4 @@
-name: Deploy Sttatic Website
+name: Deploy Static Website
 on: [push]
 
 jobs:
