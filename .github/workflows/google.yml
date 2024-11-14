@@ -52,7 +52,7 @@ jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     # runs-on: self-hosted
-    runs-on: [runner1,runner2]
+    runs-on: [runner1,self-hosted]
 
     permissions:
       contents: 'read'
