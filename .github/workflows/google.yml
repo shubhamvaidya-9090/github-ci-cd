@@ -68,6 +68,9 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
+      - name: List the bucket
+        run: gsutil ls
+
       # Configure Workload Identity Federation and generate an access token
       #
       # See https://github.com/google-github-actions/auth for more options,
