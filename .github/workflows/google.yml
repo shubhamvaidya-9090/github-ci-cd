@@ -51,7 +51,7 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
-    runs-on: ['Runner-1','Runner-2']
+    runs-on: [Runner-1,Runner-2]
 
     permissions:
       contents: 'read'
