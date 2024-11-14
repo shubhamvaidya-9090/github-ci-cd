@@ -1,12 +1,11 @@
-# AWS GITHub CICD
+# Course_GKE_Beginner_To_Pro
 
-1. Make sure AWS access key and secret access key are updated correctly.
-2. create aws lambda role(aws-lambda-role). It dont need any permission/policy to 
-3. create AWS lambda function (aws-lambda-function)
-4. install awc cli in runner if you have not installed 
-5. create s3 bucket (github-action-bucket-9090)
-5. Test case in aws lambda
-    {
-  "items": ["burger", "pizza", "soft_drink"]
-    }
-  
+IMPORTANT
+Please note, this is provided as-is, neither I, nor A Cloud Guru support this code. If you do identify any errors, then please identify and we will attempt to fix on a best efforts basis.
+
+IMPORTANT - We recommend creating a new account or lab specs for this workshop. Using an existing account could cause damage or disruption to the resources in that account.
+
+These files are distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied
+
+May 2019
+Initial Creation.
