@@ -62,11 +62,11 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4 # actions/checkout@v4
 
-      # - name: Authenticate to Google Cloud
-      #   id: auth
-      #   uses: google-github-actions/auth@v2
-      #   with:
-      #     credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: check runner
         run: gcloud storage ls
