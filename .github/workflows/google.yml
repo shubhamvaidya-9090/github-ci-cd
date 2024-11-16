@@ -69,8 +69,8 @@ jobs:
 
       - name: Create bucket
         run: |
-          gcloud storage ls
-          gcloud storage buckets create gs://my-unique-bucket-name-shubham-9090 --location=us-east1
+          gcloud storage rm --recursive gs://my-unique-bucket-name-shubham-9090/
+
 
       # Configure Workload Identity Federation and generate an access token
       #
