@@ -35,6 +35,6 @@ jobs:
         cd Chapter_One/Lecture_4_Lab/myapp/
         ls -lrt
         gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo:latest .
+        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest .
         docker images
-        docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo:latest
+        docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest
