@@ -51,7 +51,6 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
-    # runs-on: self-hosted
     runs-on: [self-hosted]
 
     permissions:
@@ -69,7 +68,9 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: check runner
-        run: gcloud storage ls
+        run: |
+          gcloud storage ls
+          gsutil ls
 
       # Configure Workload Identity Federation and generate an access token
       #
