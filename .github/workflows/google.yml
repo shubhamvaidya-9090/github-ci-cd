@@ -33,10 +33,10 @@
 
 name: 'Build and Deploy to GKE'
 
-# on:
-#   push:
-#     branches:
-#       - feature/gke
+on:
+  push:
+    branches:
+      - feature/gke-
   
 env:
   PROJECT_ID: 'playground-s-11-9d1e814d' # TODO: update to your Google Cloud project ID
