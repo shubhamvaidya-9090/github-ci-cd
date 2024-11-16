@@ -15,7 +15,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
 
     - name: code checkout
@@ -37,4 +37,4 @@ jobs:
         gcloud auth configure-docker us-central1-docker.pkg.dev
         docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo:latest .
         docker images
-        # docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo:latest
+        docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo:latest
