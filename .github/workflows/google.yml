@@ -69,7 +69,7 @@ jobs:
       #     credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: check runner
-        run: hostname -i
+        run: gcloud storage ls
 
       # Configure Workload Identity Federation and generate an access token
       #
