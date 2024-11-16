@@ -67,10 +67,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: check runner
+      - name: Create bucket
         run: |
           gcloud storage ls
-          gsutil ls
+          gcloud storage buckets create gs://my-unique-bucket-name --location=us-east1
 
       # Configure Workload Identity Federation and generate an access token
       #
