@@ -61,15 +61,6 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4 # actions/checkout@v4
 
-      - name: Start Docker
-        run: |
-          sudo service docker start
-
-      - name: Check Docker Group Membership
-        run: |
-          sudo usermod -aG docker $USER
-  
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
