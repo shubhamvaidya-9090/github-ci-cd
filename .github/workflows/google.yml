@@ -33,11 +33,11 @@
 
 name: 'Build and Deploy to GKE'
 
-on:
-  push:
-    branches:
-      - feature/gke
-
+# on:
+#   push:
+#     branches:
+#       - feature/gke
+  
 env:
   PROJECT_ID: 'playground-s-11-9d1e814d' # TODO: update to your Google Cloud project ID
   GAR_LOCATION: 'us-central1' # TODO: update to your region
@@ -75,44 +75,6 @@ jobs:
       #     echo "${{ secrets.GCP_CREDENTIALS }}" | docker login -u _json_key --password-stdin https://${{ env.GAR_LOCATION }}-docker.pkg.dev
       - name: check user
         run: whoami
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
