@@ -39,14 +39,14 @@ on:
       - feature/gke
 
 env:
-  PROJECT_ID: 'playground-s-11-fa1a560e' # TODO: update to your Google Cloud project ID
-  GAR_LOCATION: 'us-central1' # TODO: update to your region
-  GKE_CLUSTER: 'cluster-1' # TODO: update to your cluster name
-  GKE_ZONE: 'us-central1-c' # TODO: update to your cluster zone
-  DEPLOYMENT_NAME: 'gke-test' # TODO: update to your deployment name
-  REPOSITORY: 'samples' # TODO: update to your Artifact Registry docker repository name
-  IMAGE: 'static-site' # set image name
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/616931552405/locations/global/workloadIdentityPools/github-pool/providers/github-provider' # TODO: update to your workload identity provider
+  PROJECT_ID: playground-s-11-fa1a560e # TODO: update to your Google Cloud project ID
+  GAR_LOCATION: us-central1 # TODO: update to your region
+  GKE_CLUSTER: cluster-1 # TODO: update to your cluster name
+  GKE_ZONE: us-central1-c # TODO: update to your cluster zone
+  DEPLOYMENT_NAME: gke-test # TODO: update to your deployment name
+  REPOSITORY: samples # TODO: update to your Artifact Registry docker repository name
+  IMAGE: static-site # set image name
+  WORKLOAD_IDENTITY_PROVIDER: projects/616931552405/locations/global/workloadIdentityPools/github-pool/providers/github-provider # TODO: update to your workload identity provider
 
 jobs:
   setup-build-publish-deploy:
