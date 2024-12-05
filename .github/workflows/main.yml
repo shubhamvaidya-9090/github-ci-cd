@@ -48,7 +48,9 @@ jobs:
         pip install flake8 black isort
 
     - name: Check code formatting with Black
-      run: black --check src tests
+      run: |
+        black --check src tests
+        black src tests
     
     - name: Lint with flake8
       run: |
