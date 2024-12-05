@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: calculator
+Version: 1.0.0
+Summary: A simple calculator package
+Author: Your Name
+Author-email: shubhma <shubham.email@example.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+
+# Test-repo-2
+Testing purpose

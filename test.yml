@@ -1,4 +1,4 @@
-name: Python CI
+name: Calculator Package CI
 
 on:
   push:
@@ -7,70 +7,116 @@ on:
     branches: [ main ]
 
 jobs:
-  checkout:
+  lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Setup Python
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: '3.8'
+    
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-lint-${{ hashFiles('requirements.txt') }}
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install flake8 black isort
     
+    - name: Check code formatting with Black
+      run: black --check src tests
+    
+    - name: Lint with flake8
+      run: |
+        flake8 src tests --count --max-line-length=88 --statistics
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-test-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov
+    
+    - name: Run tests with coverage
+      run: |
+        pytest tests/ --cov=src/calculator --cov-report=xml
+    
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: coverage.xml
+
   build:
-    needs: checkout
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Python
+    
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
-    - name: Install build dependencies
+        python-version: '3.8'
+    
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-build-${{ hashFiles('requirements.txt') }}
+    
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Build package
-      run: python -m build --sdist --wheel ./
+        pip install build wheel
     
-  test:
+    - name: Build package
+      run: python -m build
+    
+    - name: Upload package artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist/
+
+  publish:
     needs: build
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
+    - uses: actions/download-artifact@v3
       with:
-        python-version: '3.x'
-    - name: Install test dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run tests
-      run: pytest tests/
+        name: dist
+        path: dist/
     
-  lint:
-    needs: checkout
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
+    - name: Publish package to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        python-version: '3.x'
-    - name: Install lint dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8
-    - name: Run linting
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        user: __token__
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        repository_url: https://test.pypi.org/legacy/
+        skip_existing: true

@@ -1,1 +1,7 @@
-pytest
+pytest>=7.0.0
+pytest-cov
+black
+flake8
+isort
+build
+wheel

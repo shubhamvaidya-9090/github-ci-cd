@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.cfg
+src/calculator/__init__.py
+src/calculator/operations.py
+src/calculator.egg-info/PKG-INFO
+src/calculator.egg-info/SOURCES.txt
+src/calculator.egg-info/dependency_links.txt
+src/calculator.egg-info/requires.txt
+src/calculator.egg-info/top_level.txt
+tests/test_operations.py
