@@ -35,10 +35,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
            python-version: "3.12"
-      - name: check dependancies
+      - name: Install build dependencies
         run: |
-          python3 --version
-          ls -lrt
+          python -m pip install --upgrade pip
+          pip install build
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      # - name: Build package
+      #   run: python -m build --sdist --wheel ./
     # - uses: actions/checkout@v3
     # - name: Setup Python
     #   uses: actions/setup-python@v4
