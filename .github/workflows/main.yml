@@ -1,11 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: GitHub workflow on custom runner
+name: GitHub workflow for python components
 
 # Controls when the workflow will run
 on:
   push:
-     branches: [main]
+     branches: [feature/python-comp]
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -30,3 +30,4 @@ jobs:
       - name: printing hostname
         run: echo $HOSTNAME
       - run: echo 'hello cloud gurus'
+      - run: python3 version
