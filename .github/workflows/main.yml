@@ -18,7 +18,7 @@ jobs:
       - name: checkout on code
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
@@ -27,7 +27,7 @@ jobs:
 
   build:
     needs: code-checkout
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: checkout on code
         uses: actions/checkout@v3
