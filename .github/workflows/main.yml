@@ -25,7 +25,7 @@ jobs:
 
   build:
     needs: code-checkout
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: check dependancies
         run: |
