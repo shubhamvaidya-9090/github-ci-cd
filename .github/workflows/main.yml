@@ -29,6 +29,8 @@ jobs:
     needs: code-checkout
     runs-on: self-hosted
     steps:
+      - name: checkout on code
+        uses: actions/checkout@v3
       - name: check dependancies
         run: |
           python3 --version
