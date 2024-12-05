@@ -27,7 +27,7 @@ jobs:
 
   build:
     needs: code-checkout
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: checkout on code
         uses: actions/checkout@v3
