@@ -24,3 +24,4 @@ def test_divide():
     assert Calculator.divide(5, 2) == 2.5
     with pytest.raises(ValueError):
         Calculator.divide(5, 0)
+
