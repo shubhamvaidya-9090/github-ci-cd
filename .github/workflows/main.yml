@@ -30,4 +30,4 @@ jobs:
       - name: printing hostname
         run: echo $HOSTNAME
       - run: echo 'hello cloud gurus'
-      - run: python3 version
+      - run: python3 --version
