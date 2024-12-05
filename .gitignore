@@ -1,5 +1,4 @@
 # Common Python ignores
-calculator/
 venv/
 .env
 *.pyc
