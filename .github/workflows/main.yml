@@ -107,7 +107,7 @@ jobs:
       - name: Build package
         run: python -m build --sdist --wheel ./
       - name: Upload package artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
